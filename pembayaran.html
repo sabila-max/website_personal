@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TravelGo - Pembayaran</title>
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <style>
+    body {
+      background-color: #f5f5f5;
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    
+    main {
+      flex: 1 0 auto;
+      padding: 30px 0;
+    }
+    
+    .card {
+      border-radius: 8px;
+    }
+    
+    .payment-header {
+      padding: 20px 0;
+      margin-bottom: 20px;
+    }
+    
+    .payment-header h4 {
+      margin: 0;
+      font-weight: 500;
+    }
+    
+    .payment-summary {
+      border-left: 1px solid #e0e0e0;
+      height: 100%;
+    }
+    
+    .payment-method-item {
+      padding: 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .payment-method-item:hover {
+      border-color: #26a69a;
+    }
+    
+    .payment-method-item.active {
+      border-color: #26a69a;
+      background-color: rgba(38, 166, 154, 0.05);
+    }
+    
+    .payment-method-logo {
+      max-height: 30px;
+      margin-right: 10px;
+    }
+    
+    .package-item {
+      padding: 15px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .package-item:last-child {
+      border-bottom: none;
+    }
+    
+    .package-thumb {
+      width: 100%;
+      height: 80px;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+    
+    .summary-detail {
+      padding: 10px 0;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .summary-total {
+      padding: 15px 0;
+      border-bottom: 2px solid #26a69a;
+      font-weight: bold;
+      font-size: 18px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .countdown {
+      background-color: #ffebee;
+      padding: 10px;
+      border-radius: 4px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    
+    .countdown .timer {
+      font-size: 20px;
+      font-weight: bold;
+      color: #f44336;
+    }
+    
+    .btn-large {
+      margin-top: 20px;
+      width: 100%;
+    }
+    
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+    
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      flex: 1;
+    }
+    
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #e0e0e0;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    .step.active .step-number {
+      background-color: #26a69a;
+    }
+    
+    .step.completed .step-number {
+      background-color: #26a69a;
+    }
+    
+    .step-name {
+      font-size: 14px;
+      color: #9e9e9e;
+    }
+    
+    .step.active .step-name {
+      color: #26a69a;
+      font-weight: 500;
+    }
+    
+    .step.completed .step-name {
+      color: #26a69a;
+    }
+    
+    .step:not(:last-child):after {
+      content: '';
+      position: absolute;
+      width: 80%;
+      height: 2px;
+      background-color: #e0e0e0;
+      top: 20px;
+      left: 60%;
+    }
+    
+    .step.completed:after {
+      background-color: #26a69a;
+    }
+    
+    .promo-code {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px dashed #e0e0e0;
+      border-radius: 4px;
+    }
+    
+    .payment-info {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #e8f5e9;
+      border-radius: 4px;
+    }
+    
+    .payment-info p {
+      margin: 5px 0;
+    }
+    
+    .payment-info .material-icons {
+      font-size: 16px;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <div class="navbar-fixed">
+    <nav class="teal">
+      <div class="nav-wrapper container">
+        <a href="#" class="brand-logo">TravelGo</a>
+        <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="#">Destinasi</a></li>
+          <li><a href="#">Paket Travel</a></li>
+          <li><a href="#">Promo</a></li>
+          <li><a href="#">Galeri</a></li>
+          <li><a href="#">Kontak</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <ul class="sidenav" id="mobile-nav">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Destinasi</a></li>
+    <li><a href="#">Paket Travel</a></li>
+    <li><a href="#">Promo</a></li>
+    <li><a href="#">Galeri</a></li>
+    <li><a href="#">Kontak</a></li>
+  </ul>
+
+  <main>
+    <div class="container">
+      <div class="payment-header">
+        <div class="row">
+          <div class="col s12">
+            <h4>Pembayaran</h4>
+            <p>Selesaikan pembayaran untuk pesanan Anda</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Payment Steps -->
+      <div class="steps">
+        <div class="step completed">
+          <div class="step-number">1</div>
+          <div class="step-name">Pilih Paket</div>
+        </div>
+        <div class="step completed">
+          <div class="step-number">2</div>
+          <div class="step-name">Pesan</div>
+        </div>
+        <div class="step active">
+          <div class="step-number">3</div>
+          <div class="step-name">Pembayaran</div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-name">Konfirmasi</div>
+        </div>
+      </div>
+      
+      <!-- Payment Content -->
+      <div class="row">
+        <!-- Payment Methods -->
+        <div class="col s12 m7">
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">Pilih Metode Pembayaran</span>
+              
+              <!-- Payment Method Options -->
+              <div class="payment-methods">
+                <div class="payment-method-item active">
+                  <label>
+                    <input type="radio" name="payment_method" value="bank_transfer" checked />
+                    <span>Transfer Bank</span>
+                  </label>
+                </div>
+                
+                <div class="payment-method-item">
+                  <label>
+                    <input type="radio" name="payment_method" value="credit_card" />
+                    <span>Kartu Kredit/Debit</span>
+                  </label>
+                </div>
+                
+                <div class="payment-method-item">
+                  <label>
+                    <input type="radio" name="payment_method" value="e_wallet" />
+                    <span>E-Wallet</span>
+                  </label>
+                </div>
+                
+                <div class="payment-method-item">
+                  <label>
+                    <input type="radio" name="payment_method" value="virtual_account" />
+                    <span>Virtual Account</span>
+                  </label>
+                </div>
+              </div>
+              
+              <!-- Bank Transfer Details -->
+              <div id="bank_transfer_details" class="payment-details">
+                <div class="row">
+                  <div class="col s12">
+                    <h6>Pilih Bank</h6>
+                  </div>
+                  <div class="col s12 m6">
+                    <div class="payment-method-item">
+                      <label>
+                        <input type="radio" name="bank" value="bca" checked />
+                        <span>Bank BCA</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col s12 m6">
+                    <div class="payment-method-item">
+                      <label>
+                        <input type="radio" name="bank" value="mandiri" />
+                        <span>Bank Mandiri</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col s12 m6">
+                    <div class="payment-method-item">
+                      <label>
+                        <input type="radio" name="bank" value="bni" />
+                        <span>Bank BNI</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col s12 m6">
+                    <div class="payment-method-item">
+                      <label>
+                        <input type="radio" name="bank" value="bri" />
+                        <span>Bank BRI</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="payment-info">
+                  <p><i class="material-icons">info</i> Silakan transfer ke rekening berikut:</p>
+                  <p><i class="material-icons">account_balance</i> Bank BCA</p>
+                  <p><i class="material-icons">credit_card</i> Nomor Rekening: 1234567890</p>
+                  <p><i class="material-icons">person</i> Atas Nama: PT. TravelGo Indonesia</p>
+                  <p><i class="material-icons">attach_money</i> Jumlah: Rp 5.750.000</p>
+                </div>
+              </div>
+              
+              <!-- Promo Code -->
+              <div class="promo-code">
+                <div class="row">
+                  <div class="input-field col s8">
+                    <input id="promo_code" type="text" class="validate">
+                    <label for="promo_code">Kode Promo</label>
+                  </div>
+                  <div class="col s4">
+                    <button class="btn waves-effect waves-light teal" style="margin-top: 20px;">Gunakan</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Payment Summary -->
+        <div class="col s12 m5">
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">Ringkasan Pesanan</span>
+              
+              <div class="countdown">
+                <p>Selesaikan pembayaran dalam</p>
+                <div class="timer">23:59:59</div>
+              </div>
+              
+              <!-- Package Details -->
+              <div class="package-item">
+                <div class="row">
+                  <div class="col s4">
+                    <img src="gambar/Bali.jpg" alt="Bali" class="package-thumb">
+                  </div>
+                  <div class="col s8">
+                    <h6 class="teal-text">Bali 4D/3N</h6>
+                    <p>4 Hari 3 Malam</p>
+                    <p>Tanggal: 20 - 23 Maret 2025</p>
+                    <p>2 Orang</p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Summary Details -->
+              <div class="summary-detail">
+                <span>Harga Paket (2 orang)</span>
+                <span>Rp 7.000.000</span>
+              </div>
+              <div class="summary-detail">
+                <span>Biaya Tambahan</span>
+                <span>Rp 500.000</span>
+              </div>
+              <div class="summary-detail">
+                <span>Diskon</span>
+                <span>-Rp 1.750.000</span>
+              </div>
+              <div class="summary-total">
+                <span>Total</span>
+                <span>Rp 5.750.000</span>
+              </div>
+              
+              <button class="btn-large waves-effect waves-light teal">
+                Bayar Sekarang
+                <i class="material-icons right">payment</i>
+              </button>
+              
+              <p class="center-align" style="margin-top: 20px;">
+                <i class="material-icons tiny">security</i>
+                Pembayaran Anda aman dan terenkripsi
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+<!-- Footer -->
+<footer class="page-footer teal">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m4">
+        <h5 class="white-text">TravelGo</h5>
+        <p class="grey-text text-lighten-4">Kami menyediakan layanan perjalanan terbaik untuk liburan dan bisnis Anda dengan berbagai pilihan destinasi menarik.</p>
+      </div>
+      <div class="col s12 m4">
+        <h5 class="white-text">Layanan Kami</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="#!">Tiket Pesawat</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Hotel</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Paket Wisata</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Sewa Mobil</a></li>
+        </ul>
+      </div>
+      <div class="col s12 m4">
+        <h5 class="white-text">Hubungi Kami</h5>
+        <p class="grey-text text-lighten-4">
+          <i class="material-icons tiny">email</i> info@travelgo.com<br>
+          <i class="material-icons tiny">phone</i> +62 812 3456 7890<br>
+          <i class="material-icons tiny">location_on</i> Jl. Sudirman No. 123, Jakarta
+        </p>
+        <div class="social-media">
+          <a href="#!" class="white-text"><i class="material-icons">facebook</i></a>
+          <a href="#!" class="white-text"><i class="material-icons">public</i></a>
+          <a href="#!" class="white-text"><i class="material-icons">camera_alt</i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2025 TravelGo. Hak Cipta Dilindungi.
+      <a class="grey-text text-lighten-4 right" href="#!">Syarat & Ketentuan</a>
+    </div>
+  </div>
+</footer>
+
+<!-- JavaScript at end of body for optimized loading -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Materialize components
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+    
+    // Payment method selection
+    const paymentMethods = document.querySelectorAll('.payment-method-item');
+    paymentMethods.forEach(method => {
+      method.addEventListener('click', function() {
+        // Remove active class from all methods
+        paymentMethods.forEach(m => m.classList.remove('active'));
+        // Add active class to clicked method
+        this.classList.add('active');
+        
+        // Select the radio button
+        const radioBtn = this.querySelector('input[type="radio"]');
+        if (radioBtn) {
+          radioBtn.checked = true;
+        }
+      });
+    });
+    
+    // Countdown timer
+    function startCountdown() {
+      const timerElement = document.querySelector('.timer');
+      let time = 24 * 60 * 60; // 24 hours in seconds
+      
+      const countdown = setInterval(function() {
+        time--;
+        
+        const hours = Math.floor(time / 3600);
+        const minutes = Math.floor((time % 3600) / 60);
+        const seconds = time % 60;
+        
+        timerElement.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        
+        if (time <= 0) {
+          clearInterval(countdown);
+          timerElement.textContent = '00:00:00';
+          alert('Waktu pembayaran telah habis!');
+        }
+      }, 1000);
+    }
+    
+    startCountdown();
+  });
+</script>
+</body>
+</html>

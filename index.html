@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Wanderlust Travel</title>
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    main {
+      flex: 1 0 auto;
+    }
+    .about-hero {
+      background-image: url('img/about1.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      position: relative;
+    }
+    .about-hero-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.5);
+      padding: 20px;
+      color: white;
+    }
+    .section {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+    .team-member {
+      text-align: center;
+    }
+    .team-member img {
+      max-width: 150px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="teal darken-2">
+    <div class="nav-wrapper container">
+      <a href="index.html" class="brand-logo">TravelGo</a>
+      <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="home.html">Home</a></li>
+        <li class="active"><a href="index.html">About</a></li>
+        <li><a href="pembayaran.html">Pembayaran</a></li>
+        <li><a href="login.html" class="waves-effect waves-light btn">Login</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation -->
+  <ul class="sidenav" id="mobile-nav">
+    <li><a href="home.html">Home</a></li>
+    <li class="active"><a href="index.html">About</a></li>
+    <li><a href="pembayaran.html">pembayaran</a></li>
+    <li><a href="login.html" class="waves-effect waves-light btn">Login</a></li>
+  </ul>
+
+  <main>
+    <!-- About Hero Section -->
+    <div class="about-hero">
+      <div class="about-hero-content">
+        <div class="container">
+          <h1>About TravelGo</h1>
+          <h5>Mitra Perjalanan Tepercaya Anda Sejak 2020</h5>
+        </div>
+      </div>
+    </div>
+
+    <!-- Our Story Section -->
+    <section class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m6">
+            <h2>Our Story</h2>
+            <p class="flow-text">TravelGo didirikan pada tahun 2020 dengan semangat untuk menciptakan pengalaman perjalanan yang tak terlupakan. Kami memulai sebagai tim kecil penggemar perjalanan yang ingin berbagi kecintaan mereka untuk menjelajahi dunia dengan orang lain.</p>
+            <p>Selama bertahun-tahun, kami telah berkembang menjadi perusahaan perjalanan tepercaya, membantu ribuan wisatawan menemukan destinasi baru, merasakan budaya yang berbeda, dan menciptakan kenangan seumur hidup. Komitmen kami terhadap keunggulan, layanan yang dipersonalisasi, dan praktik perjalanan yang berkelanjutan telah menjadikan kami pemimpin dalam industri ini.</p>
+          </div>
+          <div class="col s12 m6">
+            <img src="gambar/about.jpg" alt="Our Office" class="responsive-img materialboxed">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Mission Section -->
+    <section class="section teal lighten-5">
+      <div class="container">
+        <h2 class="center-align">Our Mission</h2>
+        <div class="row">
+          <div class="col s12 m8 offset-m2">
+            <div class="card-panel white">
+              <p class="flow-text center-align">Untuk menginspirasi dan memungkinkan orang menjelajahi dunia, mengalami berbagai budaya, dan menciptakan hubungan yang bermakna melalui perjalanan yang bertanggung jawab dan berkelanjutan.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s12 m4">
+            <div class="center-align">
+              <i class="material-icons large teal-text">explore</i>
+              <h4>Explore</h4>
+              <p>Kami percaya pada kekuatan transformatif perjalanan untuk memperluas wawasan dan menciptakan kenangan yang abadi.</p>
+            </div>
+          </div>
+          <div class="col s12 m4">
+            <div class="center-align">
+              <i class="material-icons large teal-text">diversity_3</i>
+              <h4>Connect</h4>
+              <p>Kami memupuk hubungan yang bermakna, antara wisatawan dan masyarakat lokal, serta meningkatkan pemahaman budaya.</p>
+            </div>
+          </div>
+          <div class="col s12 m4">
+            <div class="center-align">
+              <i class="material-icons large teal-text">eco</i>
+              <h4>Sustain</h4>
+              <p>Kami berkomitmen pada praktik perjalanan berkelanjutan yang melindungi lingkungan dan mendukung ekonomi lokal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Services Section -->
+    <section class="section">
+      <div class="container">
+        <h2 class="center-align">Our Services</h2>
+        <div class="row">
+          <div class="col s12 m6">
+            <div class="card horizontal">
+              <div class="card-image">
+                <img src="gambar/pesawat.jpg" alt="Flights">
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <h5>Flight Bookings</h5>
+                  <p>Kami menawarkan tarif yang kompetitif untuk penerbangan domestik dan internasional dengan semua maskapai penerbangan utama.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6">
+            <div class="card horizontal">
+              <div class="card-image">
+                <img src="gambar/hotel.jpg" alt="Hotels">
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <h5>Hotel Reservations</h5>
+                  <p>Dari resort mewah hingga hotel yang sederhana, kami memiliki pilihan akomodasi untuk setiap anggaran.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 m6">
+            <div class="card horizontal">
+              <div class="card-image">
+                <img src="gambar/paket tour.jpg" alt="Packages">
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <h5>Vacation Packages</h5>
+                  <p>Paket pilihan kami menggabungkan penerbangan, hotel, dan pengalaman untuk pengalaman perjalanan yang lancar.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m6">
+            <div class="card horizontal">
+              <div class="card-image">
+                <img src="gambar/transportasi.jpg" alt="Transport">
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <h5>Transportation</h5>
+                  <p>Pesan tiket kereta api, sewa mobil, dan antar-jemput bandara melalui platform kami.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section class="section teal lighten-5">
+      <div class="container">
+        <h2 class="center-align">Our Team</h2>
+        <div class="row">
+          <div class="col s12 m3">
+            <div class="team-member">
+              <h5>Salsabila</h5>
+              <p>CEO & Founder</p>
+            </div>
+          </div>
+          <div class="col s12 m3">
+            <div class="team-member">
+              <h5>Wawa</h5>
+              <p>COO</p>
+            </div>
+          </div>
+          <div class="col s12 m3">
+            <div class="team-member">
+              <h5>Dewa</h5>
+              <p>Travel Manager</p>
+            </div>
+          </div>
+          <div class="col s12 m3">
+            <div class="team-member">
+              <h5>Michael</h5>
+              <p>Customer Support</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section">
+      <div class="container">
+        <h2 class="center-align">What Our Customers Say</h2>
+        <div class="row">
+          <div class="col s12">
+            <div class="carousel">
+              <div class="carousel-item">
+                <div class="card-panel">
+                  <div class="center-align">
+                    <h5>Sarah kheil</h5>
+                    <div class="yellow-text text-darken-2">
+                      <i class="material-icons">star</i>
+                      <i class="material-icons">star</i>
+                      <i class="material-icons">star</i>
+                      <i class="material-icons">star</i>
+                      <i class="material-icons">star</i>
+                    </div>
+                  </div>
+                  <p class="center-align">"TravelGo membuat bulan madu kami ke Bali benar-benar sempurna. Setiap detail diperhatikan, dan layanan personalnya sangat bagus. kalian harus pesaan disini sih."</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="card-panel">
+                  <div class="center-align">
+                    <h5>Gian</h5>
+                    <div class="yellow-text text-darken-2">
+                      <i class="material-icons">star</i>
+                      <i class="material-icons">star</i>
+                      <i class="material-icons">star</i>
+                      <i class="material-icons">star</i>
+                      <i class="material-icons">star</i>
+                    </div>
+                  </div>
+                  <p class="center-align">"Saya telah memesan beberapa perjalanan melalui TravelGo, dan mereka selalu melebihi ekspektasi saya. mereka memperhatikan setiap detail dan layanan terhadap pelanggan tak tertandingi."</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="card-panel">
+                  <div class="center-align">
+                    <h5>Elena</h5>
+                    <div class="yellow-text text-darken-2">
+                      <i class="material-icons">star</i>
+                      <i class="material-icons">star</i>
+                      <i class="material-icons">star</i>
+                      <i class="material-icons">star</i>
+                      <i class="material-icons">star_half</i>
+                    </div>
+                  </div>
+                  <p class="center-align">"center-align">"Perjalanan keluarga saya ke Jepang berjalan lancar berkat TravelGo. Mereka mengurus semua detailnya, sehingga kami bisa fokus menikmati liburan dengan nyaman."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="page-footer teal darken-2">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m6">
+          <h5 class="white-text">TravelGo</h5>
+          <p class="grey-text text-lighten-4">Mitra perjalanan tepercaya Anda sejak 2020.</p>
+        </div>
+        <div class="col s12 m3">
+          <h5 class="white-text">Quick Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="home.html">Home</a></li>
+            <li><a class="grey-text text-lighten-3" href="About.html">About</a></li>
+            <li><a class="grey-text text-lighten-3" href="pembayaran.html">Contact</a></li>
+            <li><a class="grey-text text-lighten-3" href="login.html">Login</a></li>
+          </ul>
+        </div>
+        <div class="col s12 m3">
+          <h5 class="white-text">hubungi kami</h5>
+          <ul>
+            <li><i class="material-icons tiny">email</i> info@travelgo.id</li>
+            <li><i class="material-icons tiny">phone</i> +62 21 5678 9012</li>
+            <li><i class="material-icons tiny">location_on</i> Jl. nusa kambangan No. 123, madiun</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2025 TravelGo. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize sidenav
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems);
+      
+      // Initialize carousel
+      var carouselElems = document.querySelectorAll('.carousel');
+      var carouselInstances = M.Carousel.init(carouselElems, {
+        fullWidth: true,
+        indicators: true
+      });
+      
+      // Initialize materialboxed
+      var materialboxedElems = document.querySelectorAll('.materialboxed');
+      var materialboxedInstances = M.Materialbox.init(materialboxedElems);
+    });
+  </script>
+</body>
+</html>

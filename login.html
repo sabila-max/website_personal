@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Halaman Login</title>
+  <!-- Materialize CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <style>
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+      background-color: #f5f5f5;
+    }
+    
+    main {
+      flex: 1 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .login-card {
+      width: 400px;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    
+    .card-title {
+      font-weight: 500;
+      text-align: center;
+      padding-bottom: 20px;
+    }
+    
+    .divider {
+      margin: 20px 0;
+    }
+    
+    .social-login {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0;
+    }
+    
+    .btn-social {
+      width: 45%;
+    }
+    
+    .btn-google {
+      background-color: #db4437;
+    }
+    
+    .btn-facebook {
+      background-color: #3b5998;
+    }
+    
+    .input-field input:focus + label {
+      color: #26a69a !important;
+    }
+    
+    .input-field input:focus {
+      border-bottom: 1px solid #26a69a !important;
+      box-shadow: 0 1px 0 0 #26a69a !important;
+    }
+    
+    .error-message {
+      color: #f44336;
+      margin-top: -15px;
+      margin-bottom: 15px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="card login-card z-depth-3">
+      <div class="card-content">
+        <span class="card-title">Login</span>
+        
+        <form id="login-form">
+          <div class="input-field">
+            <i class="material-icons prefix">email</i>
+            <input id="email" type="email" class="validate" required>
+            <label for="email">Email</label>
+          </div>
+          
+          <div class="input-field">
+            <i class="material-icons prefix">lock</i>
+            <input id="password" type="password" class="validate" required>
+            <label for="password">Password</label>
+          </div>
+          
+          <div class="error-message" id="login-error">
+            Email atau password salah. Silakan coba lagi.
+          </div>
+          
+          <div class="row">
+            <div class="col s12 right-align">
+              <a href="#" class="teal-text">Lupa password?</a>
+            </div>
+          </div>
+          
+          <div class="center-align">
+            <button type="submit" class="btn waves-effect waves-light teal">
+              Login <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </form>
+        
+        <div class="divider"></div>
+        
+        <div class="center-align">
+          <p>Atau login dengan</p>
+        </div>
+        
+        <div class="social-login">
+          <button class="btn waves-effect waves-light btn-social btn-google" id="google-login">
+            Google <i class="material-icons right">language</i>
+          </button>
+          
+          <button class="btn waves-effect waves-light btn-social btn-facebook" id="facebook-login">
+            Facebook <i class="material-icons right">thumb_up</i>
+          </button>
+        </div>
+        
+        <div class="center-align" style="margin-top: 20px;">
+          <p>Belum punya akun? <a href="#" class="teal-text">Daftar di sini</a></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Materialize components
+      M.AutoInit();
+      
+      // Contoh data pengguna sederhana (dalam aplikasi nyata akan menggunakan database)
+      const validUsers = [
+        { email: "user@example.com", password: "password123" },
+        { email: "admin@example.com", password: "admin123" }
+      ];
+      
+      // Form submission handler
+      document.getElementById('login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        
+        // Verifikasi login
+        const user = validUsers.find(u => u.email === email && u.password === password);
+        
+        if (user) {
+          // Login berhasil
+          M.toast({html: 'Login berhasil! Mengalihkan ke halaman home...'});
+          
+          // Simpan status login di localStorage (opsional)
+          localStorage.setItem('isLoggedIn', 'true');
+          localStorage.setItem('userEmail', email);
+          
+          // Alihkan ke halaman home setelah jeda singkat
+          setTimeout(function() {
+            window.location.href = 'home.html';
+          }, 1500);
+        } else {
+          // Login gagal
+          document.getElementById('login-error').style.display = 'block';
+          M.toast({html: 'Login gagal. Email atau password salah.'});
+        }
+      });
+      
+      // Handler untuk tombol social login
+      document.getElementById('google-login').addEventListener('click', function() {
+        M.toast({html: 'Login dengan Google...'});
+        // Implementasi Google OAuth akan ditambahkan di sini
+        // Untuk contoh, kita akan langsung redirect
+        setTimeout(function() {
+          window.location.href = 'home.html';
+        }, 1500);
+      });
+      
+      document.getElementById('facebook-login').addEventListener('click', function() {
+        M.toast({html: 'Login dengan Facebook...'});
+        // Implementasi Facebook OAuth akan ditambahkan di sini
+        // Untuk contoh, kita akan langsung redirect
+        setTimeout(function() {
+          window.location.href = 'home.html';
+        }, 1500);
+      });
+    });
+  </script>
+</body>
+</html>

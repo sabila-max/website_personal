@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TravelGo - Jelajahi Dunia</title>
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <style>
+    /* Custom styles */
+    .hero {
+      background-image: url('gambar/travel.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 80vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      color: white;
+    }
+    
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+    
+    .search-box {
+      background: white;
+      padding: 20px;
+      border-radius: 4px;
+      margin-top: 20px;
+    }
+    
+    .destination-card {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 20px;
+    }
+    
+    .destination-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .destination-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      padding: 15px;
+      color: white;
+    }
+    
+    .destination-overlay h5 {
+      margin: 0;
+      font-weight: bold;
+    }
+    
+    .section-title {
+      font-weight: 500;
+      margin-bottom: 30px;
+    }
+    
+    .card-title {
+      background: rgba(0,0,0,0.5);
+      width: 100%;
+      padding: 10px !important;
+    }
+    
+    .promotion-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #f44336;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 3px;
+      font-weight: 500;
+      z-index: 2;
+    }
+    
+    .testimonial {
+      padding: 20px;
+      border-radius: 4px;
+      height: 100%;
+    }
+    
+    .testimonial-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    
+    .feature-icon {
+      font-size: 40px;
+      color: #26a69a;
+    }
+    
+    .navbar-fixed {
+      z-index: 999;
+    }
+    
+    /* Making navbar transparent on hero section */
+    .transparent-navbar {
+      background-color: transparent;
+      box-shadow: none;
+    }
+    
+    /* Footer styles */
+    .page-footer {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <div class="navbar-fixed">
+    <nav class="transparent-navbar">
+      <div class="nav-wrapper container">
+        <a href="#" class="brand-logo">TravelGo</a>
+        <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Destinasi</a></li>
+          <li><a href="#">Paket Travel</a></li>
+          <li><a href="#">Promo</a></li>
+          <li><a href="#">review</a></li>
+          <li><a href="#">Kontak</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <ul class="sidenav" id="mobile-nav">
+    <li class="active"><a href="#">Home</a></li>
+    <li><a href="#">Destinasi</a></li>
+    <li><a href="#">Paket Travel</a></li>
+    <li><a href="#">Promo</a></li>
+    <li><a href="#">review</a></li>
+    <li><a href="#">Kontak</a></li>
+    <li><a href="#" class="btn waves-effect waves-light teal">Login</a></li>
+  </ul>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content container">
+      <div class="row">
+        <div class="col s12 center-align">
+          <h1>Jelajahi Dunia Bersama Kami</h1>
+          <h5>Temukan destinasi impian Anda dengan harga terbaik</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m10 offset-m1 l8 offset-l2">
+          <div class="search-box z-depth-2">
+            <div class="row">
+              <div class="input-field col s12 m5">
+                <i class="material-icons prefix">location_on</i>
+                <input id="destination" type="text" class="validate">
+                <label for="destination">Destinasi</label>
+              </div>
+              <div class="input-field col s12 m3">
+                <i class="material-icons prefix">date_range</i>
+                <input id="departure" type="text" class="datepicker">
+                <label for="departure">Tanggal Berangkat</label>
+              </div>
+              <div class="input-field col s12 m3">
+                <i class="material-icons prefix">people</i>
+                <select id="travelers">
+                  <option value="" disabled selected>Pilih</option>
+                  <option value="1">1 Orang</option>
+                  <option value="2">2 Orang</option>
+                  <option value="3">3 Orang</option>
+                  <option value="4">4+ Orang</option>
+                </select>
+                <label>Jumlah Orang</label>
+              </div>
+              <div class="col s12 m1 input-field">
+                <button class="btn waves-effect waves-light teal btn-large" style="width: 100%;">
+                  <i class="material-icons">search</i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Destinations -->
+  <section class="container section">
+    <h3 class="section-title center-align">Destinasi Populer</h3>
+    <div class="row">
+      <div class="col s12 m6 l4">
+        <div class="destination-card z-depth-2">
+          <img src="gambar/Bali.jpg" alt="Bali">
+          <div class="destination-overlay">
+            <h5>Bali</h5>
+            <p>Pulau Dewata yang mempesona</p>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l4">
+        <div class="destination-card z-depth-2">
+          <img src="gambar/rajaampat.jpg" alt="Raja Ampat">
+          <div class="destination-overlay">
+            <h5>Raja Ampat</h5>
+            <p>Surga bawah laut Indonesia</p>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l4">
+        <div class="destination-card z-depth-2">
+          <img src="gambar/yogyakartaa.jpg" alt="Yogyakarta">
+          <div class="destination-overlay">
+            <h5>Yogyakarta</h5>
+            <p>Kota budaya dan sejarah</p>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l4">
+        <div class="destination-card z-depth-2">
+          <img src="gambar/labuanbajo.jpg" alt="Labuan Bajo">
+          <div class="destination-overlay">
+            <h5>Labuan Bajo</h5>
+            <p>Rumah Komodo dan pantai indah</p>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l4">
+        <div class="destination-card z-depth-2">
+          <img src="gambar/danautoba.jpg" alt="Danau Toba">
+          <div class="destination-overlay">
+            <h5>Danau Toba</h5>
+            <p>Danau vulkanik terbesar di Indonesia</p>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l4">
+        <div class="destination-card z-depth-2">
+          <img src="gambar/bromo.jpg" alt="Bromo">
+          <div class="destination-overlay">
+            <h5>Gunung Bromo</h5>
+            <p>Keindahan alam pegunungan</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="center-align">
+      <a href="#" class="btn-large waves-effect waves-light teal">Lihat Semua Destinasi</a>
+    </div>
+  </section>
+
+  <!-- Featured Packages -->
+  <section class="grey lighten-4 section">
+    <div class="container">
+      <h3 class="section-title center-align">Paket Travel Terbaik</h3>
+      <div class="row">
+        <div class="col s12 m6 l4">
+          <div class="card">
+            <div class="card-image">
+              <img src="gambar/Bali.jpg" alt="Paket Bali">
+              <span class="card-title">Bali 4D/3N</span>
+              <span class="promotion-badge">Diskon 20%</span>
+            </div>
+            <div class="card-content">
+              <p><i class="material-icons tiny">event</i> 4 Hari 3 Malam</p>
+              <p><i class="material-icons tiny">group</i> Maks. 10 Orang</p>
+              <p><i class="material-icons tiny">star</i> 4.8 (120 reviews)</p>
+              <h5 class="teal-text">Rp 3.500.000 <span class="grey-text text-darken-1" style="text-decoration: line-through; font-size: 16px;">Rp 4.375.000</span></h5>
+            </div>
+            <div class="card-action">
+              <a href="#" class="teal-text">Lihat Detail</a>
+              <a href="pembayaran.html" class="btn waves-effect waves-light teal right">Pesan</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l4">
+          <div class="card">
+            <div class="card-image">
+              <img src="gambar/rajaampat.jpg" alt="Paket Raja Ampat">
+              <span class="card-title">Raja Ampat 5D/4N</span>
+            </div>
+            <div class="card-content">
+              <p><i class="material-icons tiny">event</i> 5 Hari 4 Malam</p>
+              <p><i class="material-icons tiny">group</i> Maks. 8 Orang</p>
+              <p><i class="material-icons tiny">star</i> 4.9 (98 reviews)</p>
+              <h5 class="teal-text">Rp 7.500.000</h5>
+            </div>
+            <div class="card-action">
+              <a href="#" class="teal-text">Lihat Detail</a>
+              <a href="#" class="btn waves-effect waves-light teal right">Pesan</a>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l4">
+          <div class="card">
+            <div class="card-image">
+              <img src="gambar/bromo.jpg" alt="Paket Bromo">
+              <span class="card-title">Bromo Sunrise 3D/2N</span>
+              <span class="promotion-badge">Diskon 15%</span>
+            </div>
+            <div class="card-content">
+              <p><i class="material-icons tiny">event</i> 3 Hari 2 Malam</p>
+              <p><i class="material-icons tiny">group</i> Maks. 12 Orang</p>
+              <p><i class="material-icons tiny">star</i> 4.7 (156 reviews)</p>
+              <h5 class="teal-text">Rp 2.200.000 <span class="grey-text text-darken-1" style="text-decoration: line-through; font-size: 16px;">Rp 2.590.000</span></h5>
+            </div>
+            <div class="card-action">
+              <a href="#" class="teal-text">Lihat Detail</a>
+              <a href="#" class="btn waves-effect waves-light teal right">Pesan</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="center-align">
+        <a href="#" class="btn-large waves-effect waves-light teal">Lihat Semua Paket</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="container section">
+    <h3 class="section-title center-align">Mengapa Memilih Kami</h3>
+    <div class="row">
+      <div class="col s12 m6 l3 center-align">
+        <i class="material-icons feature-icon">security</i>
+        <h5>Keamanan</h5>
+        <p>Keamanan perjalanan anda adalah prioritas utama kami dengan asuransi perjalanan lengkap.</p>
+      </div>
+      <div class="col s12 m6 l3 center-align">
+        <i class="material-icons feature-icon">monetization_on</i>
+        <h5>Harga Terbaik</h5>
+        <p>Kami menawarkan harga terbaik untuk semua destinasi dengan jaminan harga terbaik.</p>
+        <p>Kami menawarkan harga terbaik untuk semua destinasi dengan jaminan harga terbaik.</p>
+      </div>
+      <div class="col s12 m6 l3 center-align">
+        <i class="material-icons feature-icon">flight</i>
+        <h5>Destinasi Terbaik</h5>
+        <p>Lebih dari 500+ destinasi di seluruh Indonesia dan mancanegara yang telah dikurasi.</p>
+      </div>
+      <div class="col s12 m6 l3 center-align">
+        <i class="material-icons feature-icon">support_agent</i>
+        <h5>Layanan 24/7</h5>
+        <p>Tim customer service kami siap melayani Anda 24 jam sehari, 7 hari seminggu.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Special Offers -->
+  <section class="teal section white-text">
+    <div class="container">
+      <h3 class="section-title center-align">Penawaran Spesial</h3>
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card-panel white">
+            <div class="row valign-wrapper">
+              <div class="col s4">
+                <img src="gambar/promo.jpg" alt="Promo Liburan" class="circle responsive-img">
+              </div>
+              <div class="col s8">
+                <span class="black-text">
+                  <h5>Early Bird Discount</h5>
+                  <p>Dapatkan diskon hingga 30% untuk pemesanan 3 bulan sebelum keberangkatan.</p>
+                  <a href="#" class="btn waves-effect waves-light teal darken-2">Lihat Promo</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="card-panel white">
+            <div class="row valign-wrapper">
+              <div class="col s4">
+                <img src="gambar/2.jpg" alt="Promo Group" class="circle responsive-img">
+              </div>
+              <div class="col s8">
+                <span class="black-text">
+                  <h5>Group Travel Discount</h5>
+                  <p>Ajak teman dan keluarga untuk liburan bersama dan dapatkan diskon group hingga 25%.</p>
+                  <a href="#" class="btn waves-effect waves-light teal darken-2">Lihat Promo</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="container section">
+    <h3 class="section-title center-align">Testimoni Pelanggan</h3>
+    <div class="row">
+      <div class="col s12 m4">
+        <div class="card-panel testimonial">
+          <div class="row valign-wrapper">
+            <div class="col s3">
+              <img src="gambar/av2.jpg" alt="Testimonial Avatar" class="testimonial-avatar">
+            </div>
+            <div class="col s9">
+              <span class="black-text">
+                <strong>Budi Santoso</strong><br>
+                <i class="material-icons tiny yellow-text">star star star star star</i>
+              </span>
+            </div>
+          </div>
+          <p>"Perjalanan ke Bali bersama TravelGo sangat memuaskan. Pelayanan guide sangat baik dan akomodasi yang disediakan sesuai dengan ekspektasi. Pasti akan menggunakan jasa TravelGo lagi!"</p>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <div class="card-panel testimonial">
+          <div class="row valign-wrapper">
+            <div class="col s3">
+              <img src="gambar/avatar.jpg" alt="Testimonial Avatar" class="testimonial-avatar">
+            </div>
+            <div class="col s9">
+              <span class="black-text">
+                <strong>Dewi Anggraini</strong><br>
+                <i class="material-icons tiny yellow-text">star star star star star_half</i>
+              </span>
+            </div>
+          </div>
+          <p>"Trip ke Raja Ampat bersama keluarga sangat berkesan. Pemandangan alam yang luar biasa dan paket dari TravelGo sangat worth it. Pelayanan dari awal booking hingga selesai perjalanan sangat profesional."</p>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <div class="card-panel testimonial">
+          <div class="row valign-wrapper">
+            <div class="col s3">
+              <img src="gambar/av3.jpg" alt="Testimonial Avatar" class="testimonial-avatar">
+            </div>
+            <div class="col s9">
+              <span class="black-text">
+                <strong>Rudi Hermawan</strong><br>
+                <i class="material-icons tiny yellow-text">star star star star star</i>
+              </span>
+            </div>
+          </div>
+          <p>"Pengalaman sunrise di Bromo bersama TravelGo sangat luar biasa. Guide sangat berpengalaman dan membantu. Semua itinerary berjalan dengan lancar tanpa ada kendala. Sangat direkomendasikan!"</p>
+        </div>
+      </div>
+    </div>
+    <div class="center-align">
+      <a href="#" class="btn waves-effect waves-light teal">Lihat Semua Testimoni</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="page-footer teal">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m4">
+          <h5 class="white-text">TravelGo</h5>
+          <p class="grey-text text-lighten-4">Kami menyediakan layanan perjalanan terbaik untuk memastikan liburan Anda menjadi pengalaman yang tak terlupakan. Jelajahi Indonesia dan dunia bersama kami!</p>
+        </div>
+        <div class="col s12 m2">
+          <h5 class="white-text">Tentang</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#">Tentang Kami</a></li>
+            <li><a class="grey-text text-lighten-3" href="#">Tim Kami</a></li>
+            <li><a class="grey-text text-lighten-3" href="#">Karir</a></li>
+            <li><a class="grey-text text-lighten-3" href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="col s12 m2">
+          <h5 class="white-text">Dukungan</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#">FAQ</a></li>
+            <li><a class="grey-text text-lighten-3" href="#">Kontak</a></li>
+            <li><a class="grey-text text-lighten-3" href="#">Kebijakan Privasi</a></li>
+            <li><a class="grey-text text-lighten-3" href="#">Syarat & Ketentuan</a></li>
+          </ul>
+        </div>
+        <div class="col s12 m4">
+          <h5 class="white-text">Hubungi Kami</h5>
+          <p><i class="material-icons tiny">location_on</i> Jl. nusa kambangan No. 123, madiun</p>
+          <p><i class="material-icons tiny">phone</i> +62 21 5678 9012</p>
+          <p><i class="material-icons tiny">email</i> info@travelgo.id</p>
+          <div class="social-media">
+            <a href="#" class="white-text"><i class="material-icons">facebook</i></a>
+            <a href="#" class="white-text"><i class="material-icons">twitter</i></a>
+            <a href="#" class="white-text"><i class="material-icons">photo_camera</i></a>
+            <a href="#" class="white-text"><i class="material-icons">video_library</i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2025 TravelGo. All Rights Reserved.
+        <a class="grey-text text-lighten-4 right" href="#">Kembali ke Atas</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modals -->
+  <div id="terms-modal" class="modal">
+    <div class="modal-content">
+      <h4>Syarat dan Ketentuan</h4>
+      <p>Isi syarat dan ketentuan di sini...</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Setuju</a>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize sidenav
+      var sidenav = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(sidenav);
+      
+      // Initialize datepicker
+      var datepicker = document.querySelectorAll('.datepicker');
+      M.Datepicker.init(datepicker, {
+        format: 'dd-mm-yyyy',
+        autoClose: true
+      });
+      
+      // Initialize select
+      var select = document.querySelectorAll('select');
+      M.FormSelect.init(select);
+      
+      // Initialize modal
+      var modal = document.querySelectorAll('.modal');
+      M.Modal.init(modal);
+      
+      // Change navbar color on scroll
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+          document.querySelector('nav').classList.remove('transparent-navbar');
+          document.querySelector('nav').classList.add('teal');
+        } else {
+          document.querySelector('nav').classList.remove('teal');
+          document.querySelector('nav').classList.add('transparent-navbar');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
